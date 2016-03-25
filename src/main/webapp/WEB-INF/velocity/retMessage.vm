@@ -1,0 +1,7 @@
+<xml>
+    <ToUserName><![CDATA[$!{model.toUserName}]]></ToUserName>
+    <FromUserName><![CDATA[$!{model.fromUserName}]]></FromUserName>
+    <CreateTime>$!{model.createTime}</CreateTime>
+    <MsgType><![CDATA[$!{model.msgType}]]></MsgType>
+    <Content><![CDATA[$!{model.content}]]></Content>
+</xml>
