@@ -22,11 +22,12 @@ public class Main {
      public static void main(String[] args) throws Exception{
          WordBookServiceImpl wordService = new WordBookServiceImpl();
          String destDir = "/tmp/epub/";
+         String bookName = "/Users/kenvi/Downloads/Superforecasting The Art and Science of Prediction by Philip E. Tetlock and Dan Gardner.epub";
 
-         ZipFile zipFile = new ZipFile("/Users/kenvi/Downloads/Machine.Learning.The.Art.and.Science.of.Algorithms.that.Make.Sense.of.Data.2012.11.epub");
+         ZipFile zipFile = new ZipFile(bookName);
          zipFile.extractAll(destDir);
          EpubReader epubReader = new EpubReader();
-         Book book = epubReader.readEpub(new FileInputStream("/Users/kenvi/Downloads/Superforecasting The Art and Science of Prediction by Philip E. Tetlock and Dan Gardner.epub"));
+         Book book = epubReader.readEpub(new FileInputStream(bookName));
          List<String> titles = book.getMetadata().getTitles();
          System.out.println(titles.get(0));
          List<Resource> resourceList = book.getContents();
