@@ -9,6 +9,7 @@ public class Word {
     private boolean isFamiliar;
     private String shanbayId;
     private String book;
+    private Integer chapter;
 
     public Word(String word) {
         this.word = word.toLowerCase();
@@ -44,6 +45,14 @@ public class Word {
 
     public void setShanbayId(String shanbayId) {
         this.shanbayId = shanbayId;
+    }
+
+    public Integer getChapter() {
+        return chapter;
+    }
+
+    public void setChapter(Integer chapter) {
+        this.chapter = chapter;
     }
 
     @Override

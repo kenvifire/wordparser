@@ -23,8 +23,10 @@ public class WordController {
 
     @RequestMapping(value = "/getWordList",produces= MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Word> getWordList(@RequestParam("book") String book) {
-        return wordService.getWordList(book);
+    public List<Word> getWordList(@RequestParam("book") String book,
+                                  @RequestParam("begin")int begin,
+                                  @RequestParam("end") int end) {
+        return wordService.getWordList(book, begin, end);
     }
 
 }

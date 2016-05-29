@@ -16,8 +16,8 @@ public class WordServiceImpl implements WordService{
     @Resource
     private WordDao wordDao;
 
-    public List<Word> getWordList(String book) {
-        return wordDao.getWordList(book);
+    public List<Word> getWordList(String book,int beginChapter, int endChapter) {
+        return wordDao.getWordList(book, beginChapter, endChapter);
 
     }
 

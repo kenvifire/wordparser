@@ -22,7 +22,7 @@ public class Main {
      public static void main(String[] args) throws Exception{
          WordBookServiceImpl wordService = new WordBookServiceImpl();
          String destDir = "/tmp/epub/";
-         String bookName = "/Users/kenvi/Downloads/Superforecasting The Art and Science of Prediction by Philip E. Tetlock and Dan Gardner.epub";
+         String bookName = "/Users/hannahzhang/Downloads/Superforecasting The Art and Science of Prediction by Philip E. Tetlock and Dan Gardner.epub";
 
          ZipFile zipFile = new ZipFile(bookName);
          zipFile.extractAll(destDir);
@@ -31,14 +31,21 @@ public class Main {
          List<String> titles = book.getMetadata().getTitles();
          System.out.println(titles.get(0));
          List<Resource> resourceList = book.getContents();
+         int chapter = 0;
+         WordDao wordDao = new WordDao();
          for (Resource resource : resourceList) {
              String path = destDir + "OEBPS/" + resource.getHref();
              StringExtractor extractor = new StringExtractor(path);
              String content = extractor.extractStrings(false);
              String[] words = content.split(" ");
              for (String w : words) {
-                 wordService.addWord(w);
+                 if(wordDao.countFamiliar(w) == 0) {
+                     wordService.addWord(w, chapter);
+                 }else {
+                     System.out.println("already seen:" + w);
+                 }
              }
+             chapter++;
          }
 
          File file = new File(destDir);
@@ -46,17 +53,15 @@ public class Main {
              file.delete();
          }
 
-         List<String> wordList = wordService.getWordList();
+         List<Word> wordList = wordService.getWordList();
 
          Set<Word> wordSet = new HashSet<Word>();
 
-         for(String w : wordList) {
-             Word word = new Word(w);
-             word.setBook(titles.get(0));
-             wordSet.add(word);
+         for(Word w : wordList) {
+             w.setBook(titles.get(0));
+             wordSet.add(w);
          }
 
-         WordDao wordDao = new WordDao();
          for(Word word : wordSet) {
             wordDao.addWord(word);
          }

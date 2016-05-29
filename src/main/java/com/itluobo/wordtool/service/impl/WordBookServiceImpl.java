@@ -1,5 +1,6 @@
 package com.itluobo.wordtool.service.impl;
 
+import com.itluobo.wordtool.entity.Word;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,13 +15,14 @@ import java.util.List;
 @Service
 public class WordBookServiceImpl {
 
-    private List<String> wordList = new ArrayList<String>();
+    private List<Word> wordList = new ArrayList<Word>();
 
-    public void addWord(String word) {
+    public void addWord(String word, int chapter) {
         if(!isWord(word)) return;
-
+        Word chapWord = new Word(word);
+        chapWord.setChapter(chapter);
         if(!wordList.contains(word)) {
-            wordList.add(word);
+            wordList.add(chapWord);
         }
     }
 
@@ -40,14 +42,14 @@ public class WordBookServiceImpl {
     }
 
 
-    public List<String> getWordList() {
+    public List<Word> getWordList() {
         return this.wordList;
     }
-    public List<String> getSortedWords() {
-        Collections.sort(wordList, new Comparator<String>() {
+    public List<Word> getSortedWords() {
+        Collections.sort(wordList, new Comparator<Word>() {
             @Override
-            public int compare(String o1, String o2) {
-                return o1.toLowerCase().compareTo(o2.toLowerCase());
+            public int compare(Word o1, Word o2) {
+                return o1.getWord().toLowerCase().compareTo(o2.getWord().toLowerCase());
             }
         });
         return wordList;

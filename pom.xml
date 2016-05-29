@@ -129,6 +129,11 @@
             <artifactId>jsoup</artifactId>
             <version>1.9.1</version>
         </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.18</version>
+        </dependency>
         <!--
         <dependency>
             <groupId>org.htmlparser</groupId>
@@ -137,4 +142,14 @@
         </dependency>
         -->
     </dependencies>
+    <repositories>
+        <repository>
+            <id>psiegman-repo</id>
+            <url>https://github.com/psiegman/mvn-repo/raw/master/releases</url>
+        </repository>
+        <repository>
+            <id>oschina</id>
+            <url>http://maven.oschina.net/content/groups/public/</url>
+        </repository>
+    </repositories>
 </project>
