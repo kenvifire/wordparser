@@ -1,5 +1,6 @@
 package com.itluobo.wordtool.dao;
 
+import com.itluobo.wordtool.entity.Book;
 import com.itluobo.wordtool.entity.Word;
 import org.springframework.stereotype.Component;
 
@@ -117,6 +118,28 @@ public class WordDao extends BasicDao{
                 word.setChapter(rs.getInt("chapter"));
 
                 result.add(word);
+            }
+
+            rs.close();
+            pstmt.close();
+            return result;
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+
+    public List<Book> getBookList() {
+
+        try{
+            PreparedStatement pstmt = connection.prepareStatement("SELECT DISTINCT(book) FROM WORDS");
+            ResultSet rs = pstmt.executeQuery();
+            List<Book> result = new ArrayList<Book>();
+            while(rs.next()) {
+                Book book = new Book();
+                book.setBookName(rs.getString("book"));
+                result.add(book);
             }
 
             rs.close();

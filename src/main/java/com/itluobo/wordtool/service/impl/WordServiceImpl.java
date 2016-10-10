@@ -1,6 +1,7 @@
 package com.itluobo.wordtool.service.impl;
 
 import com.itluobo.wordtool.dao.WordDao;
+import com.itluobo.wordtool.entity.Book;
 import com.itluobo.wordtool.entity.Word;
 import com.itluobo.wordtool.service.WordService;
 import org.springframework.stereotype.Service;
@@ -21,9 +22,8 @@ public class WordServiceImpl implements WordService{
 
     }
 
-    public List<String> getBookList() {
-        //TODO
-        return null;
+    public List<Book> getBookList() {
+        return wordDao.getBookList();
     }
 
 }

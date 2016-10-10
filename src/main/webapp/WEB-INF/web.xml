@@ -46,5 +46,14 @@
 		<!--<filter-name>delegatingFilterProxy</filter-name>-->
 		<!--<url-pattern>/*</url-pattern>-->
 	<!--</filter-mapping>-->
+	
+	<filter>
+		<filter-name>cors</filter-name>
+		<filter-class>com.itluobo.wordtool.web.filter.CORSFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>cors</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 </web-app>

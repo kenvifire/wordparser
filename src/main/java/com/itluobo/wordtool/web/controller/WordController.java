@@ -1,5 +1,6 @@
 package com.itluobo.wordtool.web.controller;
 
+import com.itluobo.wordtool.entity.Book;
 import com.itluobo.wordtool.entity.Word;
 import com.itluobo.wordtool.service.WordService;
 import org.springframework.http.MediaType;
@@ -28,5 +29,15 @@ public class WordController {
                                   @RequestParam("end") int end) {
         return wordService.getWordList(book, begin, end);
     }
+
+    @RequestMapping(value = "/getBookList", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<Book> getBookList() {
+        return wordService.getBookList();
+    }
+
+    @RequestMapping(value = "/getChapter")
+    @ResponseBody
+    
 
 }
